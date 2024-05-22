@@ -65,7 +65,13 @@ function Muisc() {
                 </div>
                 <p>{el.track.album.album_type}</p>
               </div>
-              <p className="text-[#fff] text-lg">2 : 12</p>
+              {el.track.preview_url ? (
+                <audio controls>
+                    <source src={el.track.preview_url} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
+            ) : <>No music is played</>}
+              <p className="text-[#fff] text-lg">{Math.floor(el.track.duration_ms / 60000)}:{((el.track.duration_ms % 60000) / 1000).toFixed(0).padStart(2, '0')}</p>
             </div>
           ))}
         </div>
